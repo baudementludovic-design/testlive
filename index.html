@@ -16,52 +16,22 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
 
-  /* --- Écran de démarrage (une seule fois, avant l'affichage public) --- */
-  #startScreen{
+  #waitScreen{
     position:fixed;
     inset:0;
     display:flex;
     align-items:center;
     justify-content:center;
     background:#0f1720;
-    color:#fff;
+    color:#c7ced6;
     text-align:center;
     z-index:10;
   }
-  #startScreen .box{
-    max-width:520px;
-    padding:0 24px;
-  }
-  #startScreen h1{
-    font-size:26px;
-    margin:0 0 14px 0;
-  }
-  #startScreen p{
-    font-size:15px;
-    line-height:1.6;
-    color:#c7ced6;
-    margin:0 0 26px 0;
-  }
-  #startTarget{
-    display:inline-block;
-    padding:14px 30px;
-    background:#1a5fb4;
-    color:#fff;
-    border-radius:8px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    user-select:none;
-  }
-  #startTarget:hover{filter:brightness(1.08);}
-  #startScreen .note{
-    margin-top:22px;
-    font-size:12.5px;
-    color:#8a93a0;
-  }
+  #waitScreen .box{max-width:480px;padding:0 24px;}
+  #waitScreen h1{font-size:22px;margin:0 0 12px 0;color:#fff;}
+  #waitScreen p{font-size:14px;line-height:1.6;margin:0;}
 
-  /* --- Affichage public : plein écran, sans aucune commande --- */
-  #viewer{
+  iframe#viewer{
     position:fixed;
     inset:0;
     width:100%;
@@ -91,38 +61,14 @@
     70%{box-shadow:0 0 0 9px rgba(46,158,70,0);}
     100%{box-shadow:0 0 0 0 rgba(46,158,70,0);}
   }
-
-  #unsupportedScreen{
-    position:fixed;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:#0f1720;
-    color:#fff;
-    text-align:center;
-    z-index:20;
-  }
-  #unsupportedScreen .box{max-width:480px;padding:0 24px;}
-  #unsupportedScreen h1{font-size:22px;margin:0 0 12px 0;}
-  #unsupportedScreen p{font-size:14px;line-height:1.6;color:#c7ced6;}
 </style>
 </head>
 <body>
 
-<div id="startScreen">
+<div id="waitScreen">
   <div class="box">
-    <h1>Affichage des résultats</h1>
-    <p>Étape unique, réservée à la personne qui installe l'écran : sélectionnez le fichier de résultats sur cet ordinateur. Ensuite, l'affichage passe en plein écran, se met à jour tout seul et ne comporte plus aucun bouton.</p>
-    <div id="startTarget">Démarrer l'affichage</div>
-    <p class="note">Fonctionne avec Google Chrome ou Microsoft Edge.</p>
-  </div>
-</div>
-
-<div id="unsupportedScreen">
-  <div class="box">
-    <h1>Navigateur non compatible</h1>
-    <p>Cet affichage automatique nécessite Google Chrome ou Microsoft Edge sur cet ordinateur.</p>
+    <h1>Résultats en direct</h1>
+    <p>En attente de la connexion à la page de contrôle…<br>Cet écran s'affichera automatiquement dès que les résultats seront disponibles.</p>
   </div>
 </div>
 
@@ -133,111 +79,49 @@
 (function(){
   "use strict";
 
-  const REFRESH_MS = 5000;
+  const STALE_AFTER_MS = 20000; // pas de mise à jour reçue depuis 20 s
 
-  const supportsFS = "showOpenFilePicker" in window;
-  const startScreen = document.getElementById("startScreen");
-  const startTarget = document.getElementById("startTarget");
-  const unsupportedScreen = document.getElementById("unsupportedScreen");
+  const waitScreen = document.getElementById("waitScreen");
   const viewer = document.getElementById("viewer");
   const liveDot = document.getElementById("liveDot");
 
-  let fileHandle = null;
-  let lastModified = null;
-  let lastSize = null;
-  let consecutiveErrors = 0;
-
-  function decodeBytes(buffer){
-    const peek = new TextDecoder("windows-1252").decode(buffer.slice(0, 4096));
-    const m = peek.match(/charset\s*=\s*"?([\w-]+)"?/i);
-    let label = m ? m[1].toLowerCase() : "windows-1252";
-    try{
-      return new TextDecoder(label).decode(buffer);
-    }catch(e){
-      return new TextDecoder("windows-1252").decode(buffer);
-    }
-  }
+  let staleTimer = null;
 
   function extractTitle(html){
     const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
     return m ? m[1].trim() : null;
   }
 
-  function render(html, modifiedDate, size){
+  function armStaleWatch(){
+    if(staleTimer) clearTimeout(staleTimer);
+    liveDot.classList.remove("stale");
+    staleTimer = setTimeout(() => liveDot.classList.add("stale"), STALE_AFTER_MS);
+  }
+
+  function showResults(html){
     viewer.srcdoc = html;
-    lastModified = modifiedDate;
-    lastSize = size;
+    viewer.style.display = "block";
+    waitScreen.style.display = "none";
+    liveDot.style.display = "block";
     const title = extractTitle(html);
     if(title) document.title = title;
-    liveDot.classList.remove("stale");
+    armStaleWatch();
   }
 
-  async function verifyPermission(handle){
-    const opts = { mode: "read" };
-    if((await handle.queryPermission(opts)) === "granted") return true;
-    if((await handle.requestPermission(opts)) === "granted") return true;
-    return false;
-  }
+  // Cette page ne lit jamais de fichier elle-même : elle affiche uniquement
+  // ce que lui transmet la page de contrôle (le "visionneur" qui a accès au fichier).
+  window.addEventListener("message", function(e){
+    if(e.source !== window.opener) return;
+    if(!e.data || e.data.type !== "resultats-update") return;
+    showResults(e.data.html);
+  });
 
-  async function tick(forceRender){
-    if(!fileHandle) return;
+  // Signale à la page de contrôle qu'on est prêt à recevoir (elle renverra
+  // aussitôt le dernier contenu connu, sans attendre la prochaine actualisation).
+  if(window.opener){
     try{
-      const file = await fileHandle.getFile();
-      const unchanged = !forceRender && lastModified && file.lastModified === lastModified.getTime() && file.size === lastSize;
-      if(unchanged){
-        consecutiveErrors = 0;
-        liveDot.classList.remove("stale");
-        return;
-      }
-      const buffer = await file.arrayBuffer();
-      const html = decodeBytes(buffer);
-      render(html, new Date(file.lastModified), file.size);
-      consecutiveErrors = 0;
-    }catch(err){
-      // Fichier temporairement verrouillé pendant sa réécriture, ou déplacé :
-      // on garde le dernier affichage à l'écran et on retente silencieusement.
-      consecutiveErrors++;
-      if(consecutiveErrors >= 3) liveDot.classList.add("stale");
-      console.error(err);
-    }
-  }
-
-  async function start(){
-    try{
-      const [handle] = await window.showOpenFilePicker({
-        types: [{
-          description: "Pages de résultats (HTML)",
-          accept: { "text/html": [".html", ".htm"] }
-        }],
-        excludeAcceptAllOption: false,
-        multiple: false
-      });
-      const ok = await verifyPermission(handle);
-      if(!ok) return; // l'utilisateur pourra recliquer sur "Démarrer l'affichage"
-
-      fileHandle = handle;
-
-      startScreen.style.display = "none";
-      viewer.style.display = "block";
-      liveDot.style.display = "block";
-
-      const root = document.documentElement;
-      if(root.requestFullscreen){
-        root.requestFullscreen().catch(() => {});
-      }
-
-      await tick(true);
-      setInterval(() => tick(false), REFRESH_MS);
-    }catch(err){
-      // Sélection annulée : on reste sur l'écran de démarrage.
-    }
-  }
-
-  if(!supportsFS){
-    startScreen.style.display = "none";
-    unsupportedScreen.style.display = "flex";
-  }else{
-    startTarget.addEventListener("click", start);
+      window.opener.postMessage({ type: "resultats-viewer-ready" }, "*");
+    }catch(e){ /* ignore */ }
   }
 })();
 </script>
