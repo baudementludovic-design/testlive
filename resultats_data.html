@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Résultats en direct</title>
+<style>
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background:#ffffff;
+    overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  #waitScreen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#0f1720;
+    color:#c7ced6;
+    text-align:center;
+    z-index:10;
+  }
+  #waitScreen .box{max-width:480px;padding:0 24px;}
+  #waitScreen h1{font-size:22px;margin:0 0 12px 0;color:#fff;}
+  #waitScreen p{font-size:14px;line-height:1.6;margin:0;}
+
+  iframe#viewer{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    display:none;
+    background:#fff;
+  }
+
+  #liveDot{
+    position:fixed;
+    top:14px;
+    right:16px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#2e9e46;
+    box-shadow:0 0 0 0 rgba(46,158,70,.6);
+    animation:pulse 2s infinite;
+    display:none;
+    z-index:5;
+    pointer-events:none;
+  }
+  #liveDot.stale{background:#c9a227;animation:none;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(46,158,70,.55);}
+    70%{box-shadow:0 0 0 9px rgba(46,158,70,0);}
+    100%{box-shadow:0 0 0 0 rgba(46,158,70,0);}
+  }
+</style>
+</head>
+<body>
+
+<div id="waitScreen">
+  <div class="box">
+    <h1>Résultats en direct</h1>
+    <p>En attente de la connexion à la page de contrôle…<br>Cet écran s'affichera automatiquement dès que les résultats seront disponibles.</p>
+  </div>
+</div>
+
+<span id="liveDot"></span>
+<iframe id="viewer" title="Résultats en direct"></iframe>
+
+<script>
+(function(){
+  "use strict";
+
+  const STALE_AFTER_MS = 20000; // pas de mise à jour reçue depuis 20 s
+
+  const waitScreen = document.getElementById("waitScreen");
+  const viewer = document.getElementById("viewer");
+  const liveDot = document.getElementById("liveDot");
+
+  let staleTimer = null;
+
+  function extractTitle(html){
+    const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    return m ? m[1].trim() : null;
+  }
+
+  function armStaleWatch(){
+    if(staleTimer) clearTimeout(staleTimer);
+    liveDot.classList.remove("stale");
+    staleTimer = setTimeout(() => liveDot.classList.add("stale"), STALE_AFTER_MS);
+  }
+
+  function showResults(html){
+    viewer.srcdoc = html;
+    viewer.style.display = "block";
+    waitScreen.style.display = "none";
+    liveDot.style.display = "block";
+    const title = extractTitle(html);
+    if(title) document.title = title;
+    armStaleWatch();
+  }
+
+  // Cette page ne lit jamais de fichier elle-même : elle affiche uniquement
+  // ce que lui transmet la page de contrôle (le "visionneur" qui a accès au fichier).
+  window.addEventListener("message", function(e){
+    if(e.source !== window.opener) return;
+    if(!e.data || e.data.type !== "resultats-update") return;
+    showResults(e.data.html);
+  });
+
+  // Signale à la page de contrôle qu'on est prêt à recevoir (elle renverra
+  // aussitôt le dernier contenu connu, sans attendre la prochaine actualisation).
+  if(window.opener){
+    try{
+      window.opener.postMessage({ type: "resultats-viewer-ready" }, "*");
+    }catch(e){ /* ignore */ }
+  }
+})();
+</script>
+
+</body>
+</html>
