@@ -68,7 +68,7 @@
 <div id="waitScreen">
   <div class="box">
     <h1>Résultats en direct</h1>
-    <p>En attente de la connexion à la page de contrôle…<br>Cet écran s'affichera automatiquement dès que les résultats seront disponibles.</p>
+    <p>Chargement des résultats…</p>
   </div>
 </div>
 
@@ -79,6 +79,10 @@
 (function(){
   "use strict";
 
+  // Nom du fichier de données dans ce même dépôt/site (mis à jour par le
+  // script de synchronisation qui tourne sur le PC de l'organisateur).
+  const DATA_FILE = "resultats_data.html";
+  const REFRESH_MS = 5000;
   const STALE_AFTER_MS = 20000; // pas de mise à jour reçue depuis 20 s
 
   const waitScreen = document.getElementById("waitScreen");
@@ -86,6 +90,18 @@
   const liveDot = document.getElementById("liveDot");
 
   let staleTimer = null;
+  let lastText = null;
+
+  function decodeBytes(buffer){
+    const peek = new TextDecoder("windows-1252").decode(buffer.slice(0, 4096));
+    const m = peek.match(/charset\s*=\s*"?([\w-]+)"?/i);
+    let label = m ? m[1].toLowerCase() : "windows-1252";
+    try{
+      return new TextDecoder(label).decode(buffer);
+    }catch(e){
+      return new TextDecoder("windows-1252").decode(buffer);
+    }
+  }
 
   function extractTitle(html){
     const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -99,30 +115,33 @@
   }
 
   function showResults(html){
+    if(html === lastText) return; // pas de changement, on évite de rafraîchir l'iframe inutilement
+    lastText = html;
     viewer.srcdoc = html;
     viewer.style.display = "block";
     waitScreen.style.display = "none";
     liveDot.style.display = "block";
     const title = extractTitle(html);
     if(title) document.title = title;
-    armStaleWatch();
   }
 
-  // Cette page ne lit jamais de fichier elle-même : elle affiche uniquement
-  // ce que lui transmet la page de contrôle (le "visionneur" qui a accès au fichier).
-  window.addEventListener("message", function(e){
-    if(e.source !== window.opener) return;
-    if(!e.data || e.data.type !== "resultats-update") return;
-    showResults(e.data.html);
-  });
-
-  // Signale à la page de contrôle qu'on est prêt à recevoir (elle renverra
-  // aussitôt le dernier contenu connu, sans attendre la prochaine actualisation).
-  if(window.opener){
+  async function poll(){
     try{
-      window.opener.postMessage({ type: "resultats-viewer-ready" }, "*");
-    }catch(e){ /* ignore */ }
+      const res = await fetch(DATA_FILE + "?t=" + Date.now(), { cache: "no-store" });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      const buffer = await res.arrayBuffer();
+      const html = decodeBytes(buffer);
+      showResults(html);
+      armStaleWatch();
+    }catch(err){
+      // Fichier pas encore publié, ou coupure réseau passagère : on garde le
+      // dernier affichage connu et on retentera au prochain cycle.
+      console.error(err);
+    }
   }
+
+  poll();
+  setInterval(poll, REFRESH_MS);
 })();
 </script>
 
