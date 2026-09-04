@@ -1,130 +1,2845 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RÃ©sultats en direct</title>
-<style>
-  *{box-sizing:border-box;}
-  html,body{
-    margin:0;
-    padding:0;
-    width:100%;
-    height:100%;
-    background:#ffffff;
-    overflow:hidden;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  }
-
-  #waitScreen{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#0f1720;
-    color:#c7ced6;
-    text-align:center;
-    z-index:10;
-  }
-  #waitScreen .box{max-width:480px;padding:0 24px;}
-  #waitScreen h1{font-size:22px;margin:0 0 12px 0;color:#fff;}
-  #waitScreen p{font-size:14px;line-height:1.6;margin:0;}
-
-  iframe#viewer{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:0;
-    display:none;
-    background:#fff;
-  }
-
-  #liveDot{
-    position:fixed;
-    top:14px;
-    right:16px;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:#2e9e46;
-    box-shadow:0 0 0 0 rgba(46,158,70,.6);
-    animation:pulse 2s infinite;
-    display:none;
-    z-index:5;
-    pointer-events:none;
-  }
-  #liveDot.stale{background:#c9a227;animation:none;}
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(46,158,70,.55);}
-    70%{box-shadow:0 0 0 9px rgba(46,158,70,0);}
-    100%{box-shadow:0 0 0 0 rgba(46,158,70,0);}
-  }
+<HTML>
+<style type= "text/css">
+body,td,th {
+color: #000000;
+font-family: Times New Roman,Arial, Helvetica, sans-serif;
+font-size: 12px;
+}
 </style>
-</head>
-<body>
-
-<div id="waitScreen">
-  <div class="box">
-    <h1>RÃ©sultats en direct</h1>
-    <p>En attente de la connexion Ã  la page de contrÃ´leâ€¦<br>Cet Ã©cran s'affichera automatiquement dÃ¨s que les rÃ©sultats seront disponibles.</p>
-  </div>
-</div>
-
-<span id="liveDot"></span>
-<iframe id="viewer" title="RÃ©sultats en direct"></iframe>
-
-<script>
-(function(){
-  "use strict";
-
-  const STALE_AFTER_MS = 20000; // pas de mise Ã  jour reÃ§ue depuis 20 s
-
-  const waitScreen = document.getElementById("waitScreen");
-  const viewer = document.getElementById("viewer");
-  const liveDot = document.getElementById("liveDot");
-
-  let staleTimer = null;
-
-  function extractTitle(html){
-    const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-    return m ? m[1].trim() : null;
-  }
-
-  function armStaleWatch(){
-    if(staleTimer) clearTimeout(staleTimer);
-    liveDot.classList.remove("stale");
-    staleTimer = setTimeout(() => liveDot.classList.add("stale"), STALE_AFTER_MS);
-  }
-
-  function showResults(html){
-    viewer.srcdoc = html;
-    viewer.style.display = "block";
-    waitScreen.style.display = "none";
-    liveDot.style.display = "block";
-    const title = extractTitle(html);
-    if(title) document.title = title;
-    armStaleWatch();
-  }
-
-  // Cette page ne lit jamais de fichier elle-mÃªme : elle affiche uniquement
-  // ce que lui transmet la page de contrÃ´le (le "visionneur" qui a accÃ¨s au fichier).
-  window.addEventListener("message", function(e){
-    if(e.source !== window.opener) return;
-    if(!e.data || e.data.type !== "resultats-update") return;
-    showResults(e.data.html);
-  });
-
-  // Signale Ã  la page de contrÃ´le qu'on est prÃªt Ã  recevoir (elle renverra
-  // aussitÃ´t le dernier contenu connu, sans attendre la prochaine actualisation).
-  if(window.opener){
-    try{
-      window.opener.postMessage({ type: "resultats-viewer-ready" }, "*");
-    }catch(e){ /* ignore */ }
-  }
-})();
-</script>
-
-</body>
-</html>
+<HEAD>
+<meta http-equiv="content-type" content ="text/html; charset=ISO-8859-1">
+</HEAD>
+<TITLE>
+Résultats CCO_ISM_2026_S1
+</TITLE>
+<BODY>
+<a href="#tonancre"><center>Lien vers Résultats Par Equipes</a>
+<BR>
+<p><center>
+CRTL+F pour faire une recherche (Une Barre de recherche va s'afficher en Haut ou en Bas suivant le Navigateur)
+<BR>
+F5 pour faire une Actualisation de la Page
+</p>
+<BR>
+<u><Center>Résultats 8ème </u><BR>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=2>
+<TR align=center>
+<TD width= 40>Terrain</TD>
+<TD width= 300>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 300>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 40>Score</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >JOLY GILLES<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LECOCQ EMMANUEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >CORDEROT CHRISTIAN<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >*</TD>
+<TD> 0 - 0</TD>
+</TR>
+</TABLE> </CENTER>
+<BR>
+<u><Center>Résultats 16ème </u><BR>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=2>
+<TR align=center>
+<TD width= 40>Terrain</TD>
+<TD width= 330>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 330>Nom de l'équipe - n° du comité ou ligue</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >BASSET JEAN-PHILIPPE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">LIEBAULT CLAUDE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >CORDEROT CHRISTIAN<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">RENNER DAVID<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >LECOCQ EMMANUEL<BR>(0210307/NOLAY 2000/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >BECHE DAMIEN<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >SCHROEDER MICHAEL<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >BERTHE LUDOVIC<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >NAVELOT CHRISTIAN<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD>T.9</TD>
+<TD BGCOLOR="#C0C0C0">ANDRIOT JEROME<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD >JOLY GILLES<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >PISANESCHI LAURENT<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD >*</TD>
+</TR>
+</TABLE> </CENTER>
+<BR>
+<u><Center>Résultats 32ème </u><BR>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=2>
+<TR align=center>
+<TD width= 40>Terrain</TD>
+<TD width= 330>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 330>Nom de l'équipe - n° du comité ou ligue</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >FERNANDEZ JEAN-MICHEL<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >RABREGEAU KEVIN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD>T.8</TD>
+<TD BGCOLOR="#C0C0C0">LECLERCQ MICHAEL<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD >ANDRIOT JEROME<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >RAYMOND SÉBASTIEN<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >JACOB FABRICE<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >LAGHA HAMID<BR>(0210414/USCVL/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.8</TD>
+<TD BGCOLOR="#C0C0C0">CRAMOISY CHRISTOPHE<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD >BECHE DAMIEN<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >RUDATIS JEROME<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">HORST JULIEN<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD >PISANESCHI LAURENT<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">MANGIONE TONY<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >LECOCQ EMMANUEL<BR>(0210307/NOLAY 2000/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >RAAZ JULES<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.8</TD>
+<TD BGCOLOR="#C0C0C0">MAUBLANC PASCAL<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD >LIEBAULT CLAUDE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">BOUVOT MICHEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >SCHROEDER MICHAEL<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >SALOM BERNARD<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD >JOLY GILLES<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">CASCHERA DIMITRI<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">MASSON ALAIN<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >BASSET JEAN-PHILIPPE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD >BERTHE LUDOVIC<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD BGCOLOR="#C0C0C0">PRUDENT ANTONY<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >PAULIN SEBASTIEN<BR>(0210102/ASPTT/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >RENAUD DOMINIQUE<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LOIODICE RAPHAËL<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD >RENNER DAVID<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">MARTIN MICHEL<BR>(0210414/USCVL/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >ROBERT ALEXANDRE<BR>(0210206/PETANQUE DE LONGVIC/021 )</TD>
+</TR>
+<TR align=center>
+<TD>T.11</TD>
+<TD BGCOLOR="#C0C0C0">REBELO JOSÉ-ANTONIO<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD >NAVELOT CHRISTIAN<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >AUBRUN FLORIAN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >REMOND ANTHONY<BR>(0210220/FENAY CLUB PETANQUE/021 )</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >MASSON ERIC<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LONDIN-QUNY JEAN-MARC<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD >*</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >CORDEROT CHRISTIAN<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">COT HERVE<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+</TR>
+</TABLE> </CENTER>
+<BR>
+<u><Center>Résultats Cadrage</u><BR>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=1>
+<TR align=center>
+<TD width= 40>Terrain</TD>
+<TD width= 300>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 300>Nom de l'équipe - n° du comité ou ligue</TD>
+<TD width= 40>Score</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >CASCHERA DIMITRI<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >SALOM BERNARD<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LECLERCQ MICHAEL<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >RUDATIS JEROME<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >SCHROEDER MICHAEL<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >CORDEROT CHRISTIAN<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >COT HERVE<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >BERTHE LUDOVIC<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >MANGIONE TONY<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >JOLY GILLES<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >RENAUD DOMINIQUE<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LECOCQ EMMANUEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >REBELO JOSÉ-ANTONIO<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >FERNANDEZ JEAN-MICHEL<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >HORST JULIEN<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LONDIN-QUNY JEAN-MARC<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >BASSET JEAN-PHILIPPE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >MASSON ERIC<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >RAAZ JULES<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >PRUDENT ANTONY<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >PAULIN SEBASTIEN<BR>(0210102/ASPTT/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >NAVELOT CHRISTIAN<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >LOIODICE RAPHAËL<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">Office</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">MARCATI GAEL<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >JACOB FABRICE<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">BULLE GABRIEL<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD >ROBERT ALEXANDRE<BR>(0210206/PETANQUE DE LONGVIC/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD >BECHE DAMIEN<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">MULLER CHRISTIAN<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">PETEUIL SÉBASTIEN<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >PISANESCHI LAURENT<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">DEBOISE GUILLAUME<BR>(0210409/PETANQUE D'AIGNAY LE DUC/021 )</TD>
+<TD >MAUBLANC PASCAL<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >HENRIQUES FERNAND<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >SAVIANE FLORIAN<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >MEDOLA BENOIT<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >PADILLA SAEZ JOSÉ<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >NICOLAS QUENTIN<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >BARBOSA EDOUARDO<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >CHAMBELLANT NOËL<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">POIROTTE AURELIEN<BR>(0210415/LA PETANQUE CHATILLONNAISE/021 )</TD>
+<TD >MASSON ALAIN<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >GONCALVES ANTOINE<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >VERNARDET FLORIAN<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >MILLOT THOMAS<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">MAEREN PIERRE<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >REMOND ANTHONY<BR>(0210220/FENAY CLUB PETANQUE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">GOISBLIN CORENTIN<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD >ANDRIOT JEROME<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">MERCIER FABRICE<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >LIEBAULT CLAUDE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">BENEDETTO ANTHONY<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD >LAGHA HAMID<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >MERCIER PHILIPPE<BR>(0210102/ASPTT/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">PEROIS STÉPHANE<BR>(0210109/PETANQUE TOISON D'OR/021 )</TD>
+<TD >BOUVOT MICHEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">REY ANTONIO<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >RAYMOND SÉBASTIEN<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">ROUSSEL JEAN-PIERRE<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >AUBRUN FLORIAN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">GONY LIONEL<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD >CRAMOISY CHRISTOPHE<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.7</TD>
+<TD BGCOLOR="#C0C0C0">BOLOTTE FREDERIC<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >RABREGEAU KEVIN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">LEGRAIN DAMIEN<BR>(0210413/LA BOULE SEDELOCIENNE/021 )</TD>
+<TD >MARTIN MICHEL<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >CONTANT MAXENCE<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >ROSSIGNOL PIERRE-ANTOINE<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">DA PONT JULIEN<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD >RENNER DAVID<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+</TABLE> </CENTER>
+<BR>
+<BR>
+<u><Center>Résultats 1er Tour</u><BR>
+<BR>
+<Center>(Case Grisée : Equipe Perdante)<BR>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=1>
+<TR align=center>
+<TD width= 40>Terrain</TD>
+<TD width= 300>Nom de l'équipe - N° du comité ou ligue</TD>
+<TD width= 300>Nom de l'équipe - N° du comité ou ligue</TD>
+<TD width= 40>Score</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">MICHEL DAMIEN<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >MEDOLA BENOIT<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >BILLOTET CEDRIC<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >MAGNY ROGER<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">VINCENT THIERRY<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >BOUVOT MICHEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >MERCIER FABRICE<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">MOUILLON JÉRÉMY<BR>(0210502/PETANQUE CLUB DE CLENAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >RENAUD DOMINIQUE<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD BGCOLOR="#C0C0C0">HAULLARD TEDDY<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">MEFORT BENOIT<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >CORDEROT CHRISTIAN<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">MACAIRE NICOLAS<BR>(0210410/PETANQUE DE L AUXOIS/021 )</TD>
+<TD >ROSSIGNOL PIERRE-ANTOINE<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">BUROT ERIC<BR>(0210315/LA BOULE SAVOUGEOISE/021 )</TD>
+<TD >RUDATIS JEROME<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">LEGA DENIS<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD >VERNARDET FLORIAN<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">LANTERNIER MARC<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >PISANESCHI LAURENT<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >SERGUES THÉO<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">CHOUARD FRÉDÉRIC<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD >BERTHE LUDOVIC<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">CAVALLINI DOMINIQUE<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD >PADILLA SAEZ JOSÉ<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">GENGEMBACHER JEAN PIERRE<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD >CASCHERA DIMITRI<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >SALOM BERNARD<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">DELANNOY ARNAUD<BR>(0210521/LA BOULE DE PONTAILLER/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">DE-GIRARDIER CHRISTOPHE<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD >PETEUIL SÉBASTIEN<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">TUDOUX LUDOVIC<BR>(0210410/PETANQUE DE L AUXOIS/021 )</TD>
+<TD >MAEREN PIERRE<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >FORTEMAISON LUCAS<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD >PRUDENT ANTONY<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD BGCOLOR="#C0C0C0">DOBEK ERIC<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >REYMOND JEAN-PIERRE<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >GARNIER CHRISTOPHE<BR>(0210220/FENAY CLUB PETANQUE/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">BASILETTI DAVID<BR>(0210316/VOUGEOT PETANQUE CLUB/021 )</TD>
+<TD >NAVELOT CHRISTIAN<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">FRASCOLLA LUDOVIC<BR>(0210304/PETANQUE DE GEVREY CHAMBERTIN/021 )</TD>
+<TD >LOIODICE RAPHAËL<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">LAPO JEAN-ROBERT<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >LAGHA HAMID<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">FERREIRA-DA-SILVA MIKE<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD >CHAMBELLANT NOËL<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">THIOURT EDDY<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD >LIEBAULT CLAUDE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">DUMONT NATHAN<BR>(0210409/PETANQUE D'AIGNAY LE DUC/021 )</TD>
+<TD >GONCALVES ANTOINE<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >GAUDIER THOMAS<BR>(0210109/PETANQUE TOISON D'OR/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.4</TD>
+<TD BGCOLOR="#C0C0C0">CHEVALLIER LAURENT<BR>(0210409/PETANQUE D'AIGNAY LE DUC/021 )</TD>
+<TD >HENRIQUES FERNAND<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">TROISGROS FABRICE<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >ROUSSEL JEAN-PIERRE<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">MITI TAUHERE<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD >BASSET JEAN-PHILIPPE<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >THOMAS SYLVAIN<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">CHATAIN DYLAN<BR>(0210414/USCVL/021 )</TD>
+<TD >MANGIONE TONY<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >ARTON ANDRE<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">RENNER KILLIAN<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >CONTANT MAXENCE<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">BOUCHER THOMAS<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >COT HERVE<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">FRASCOLLA ANTHONY<BR>(0210304/PETANQUE DE GEVREY CHAMBERTIN/021 )</TD>
+<TD >MULLER CHRISTIAN<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >RAVASSAT ROMUALD<BR>(0210413/LA BOULE SEDELOCIENNE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">GARNIER ROBERT<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >MASSON ALAIN<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.11</TD>
+<TD BGCOLOR="#C0C0C0">LARUE PIERRE<BR>(0210220/FENAY CLUB PETANQUE/021 )</TD>
+<TD >ROBERT ALEXANDRE<BR>(0210206/PETANQUE DE LONGVIC/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">MARCOUX YANNICK<BR>(0210316/VOUGEOT PETANQUE CLUB/021 )</TD>
+<TD >AUBRUN FLORIAN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >ECHAROUX THIERRY<BR>(0210106/PETANQUE DU DRAPEAU/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">LABYAD SOUFIAN<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD >GOISBLIN CORENTIN<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >GAUDRY JOEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">LE-PONNER EMMANUEL<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD >RABREGEAU KEVIN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >ROGALA LUDOVIC<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">KUKULINSKI ALAN<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD >DA PONT JULIEN<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">BONNEFOY MARTIAL<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD >MARCATI GAEL<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >ARNOULT ANTON<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">DUCHEZ XAVIER<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD >LONDIN-QUNY JEAN-MARC<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >ANJUERER NICOLAS<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >CRETE DAVID<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">SUCHET MICHEL<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD >JACOB FABRICE<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">LE-FLANCHEC FLORIAN<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >BECHE DAMIEN<BR>(0210320/LE CARREAU DE PAGNY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">GIRAUD SEBASTIEN<BR>(0210206/PETANQUE DE LONGVIC/021 )</TD>
+<TD >SCHROEDER MICHAEL<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">GILLOT BRUNO<BR>(0210510/L'ETOILE DE BRAZEY/021 )</TD>
+<TD >GONY LIONEL<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD >PAULIN SEBASTIEN<BR>(0210102/ASPTT/021 )</TD>
+<TD BGCOLOR="#C0C0C0">LETIENNE THIBAULT<BR>(0210415/LA PETANQUE CHATILLONNAISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">MISSEY DAVID<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >LECOCQ EMMANUEL<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >FUMEY FABIEN<BR>(0210510/L'ETOILE DE BRAZEY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">BORTOT ERIC<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >POIROTTE AURELIEN<BR>(0210415/LA PETANQUE CHATILLONNAISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">MORIN DIDIER<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD >REY ANTONIO<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">POCHERON SÉBASTIEN<BR>(0210106/PETANQUE DU DRAPEAU/021 )</TD>
+<TD >MAUBLANC PASCAL<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">GRENIER GÉRARD<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >BOLOTTE FREDERIC<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >ANDRE TOM<BR>(0210307/NOLAY 2000/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >SAVI MICHEL<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">FLICK JIMMY DYLAN<BR>(0210105/COCHONNET DU LAC/021 )</TD>
+<TD >NICOLAS QUENTIN<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">RIGAUD XAVIER<BR>(0210406/LA BOULE MONTBARDOISE/021 )</TD>
+<TD >MASSON ERIC<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">FIEVET JEAN-JACQUES<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >FERNANDEZ JEAN-MICHEL<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">MARTENOT CLEMENT<BR>(0210520/LA BOULE MIREBELLOISE/021 )</TD>
+<TD >HORST JULIEN<BR>(0210205/LA RENAISSANCE ST APOLLINAIRE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >RAAZ JULES<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD BGCOLOR="#C0C0C0">LAMBERT DIDIER<BR>(0210503/CLUB PETANQUE ISSOIS/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">TROULLIER SEBASTIEN<BR>(0210414/USCVL/021 )</TD>
+<TD >MERCIER PHILIPPE<BR>(0210102/ASPTT/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">MESNIL THIERRY<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD >MARTIN MICHEL<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">VICTORIN MICHEL<BR>(0210203/PETANQUE FONTENOISE/021 )</TD>
+<TD >CRAMOISY CHRISTOPHE<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">PERRET THOMAS<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD >BARBOSA EDOUARDO<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">BLANCHARD THIBAUT<BR>(0210415/LA PETANQUE CHATILLONNAISE/021 )</TD>
+<TD >ANDRIOT JEROME<BR>(0210404/LA JOYEUSE PETANQUE COLO/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD >REMOND ANTHONY<BR>(0210220/FENAY CLUB PETANQUE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">RAHALI ABDELMAJID<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD >BULLE GABRIEL<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">DESCHARRIERES JORDAN<BR>(0210204/LA BOULE CENTRALE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.3</TD>
+<TD BGCOLOR="#C0C0C0">PINGAUD DENIS<BR>(0210102/ASPTT/021 )</TD>
+<TD >BENEDETTO ANTHONY<BR>(0210511/LONGEAULT PLUVAULT PETANQUE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >BONDY ROMAIN<BR>(0210407/LE COCHONNET DU SEREIN/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.2</TD>
+<TD BGCOLOR="#C0C0C0">CORNICHE GEOFFREY<BR>(0210311/PETANQUE DE COMBLANCHIEN/021 )</TD>
+<TD >LECLERCQ MICHAEL<BR>(0210509/COCHONNET GENLISSIEN/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD >DEBOISE GUILLAUME<BR>(0210409/PETANQUE D'AIGNAY LE DUC/021 )</TD>
+<TD BGCOLOR="#C0C0C0">ROYER REYNALD<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">FAY DIDIER<BR>(0210301/PETANQUE LA VIOLETTE/021 )</TD>
+<TD >RAYMOND SÉBASTIEN<BR>(0210505/PETANQUE LAMARCHOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">MENARELLO JANIS<BR>(0210415/LA PETANQUE CHATILLONNAISE/021 )</TD>
+<TD >REBELO JOSÉ-ANTONIO<BR>(0210500/JOYEUSE PETANQUE AUXONNAISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD >JOLY GILLES<BR>(0210214/CARREAU DE MARSANNAY/021 )</TD>
+<TD BGCOLOR="#C0C0C0">GARRIEN GUILLAUME<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD >LEGRAIN DAMIEN<BR>(0210413/LA BOULE SEDELOCIENNE/021 )</TD>
+<TD BGCOLOR="#C0C0C0">BEAUMUNIER CHRISTIAN<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >ROUGERON PASCAL<BR>(0210215/COCHONNET DE NEUILLY/021 )</TD>
+<TD >*</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >HOUBRE BERTRAND<BR>(0210109/PETANQUE TOISON D'OR/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">VASSEUR CYRIL<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >RENNER DAVID<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD></TD>
+<TD >*</TD>
+<TD >BAL GERARD<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">FIEVET MIKAEL<BR>(0210209/BOULE QUETIGNOISE/021 )</TD>
+<TD >PEROIS STÉPHANE<BR>(0210109/PETANQUE TOISON D'OR/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">LEMIRE JOHNNY<BR>(0210507/PETANQUE LONGCHAMPOISE/021 )</TD>
+<TD >MILLOT THOMAS<BR>(0210306/PETANQUE DE NUITS/021 )</TD>
+<TD> **</TD>
+</TR>
+<TR align=center>
+<TD>T.1</TD>
+<TD BGCOLOR="#C0C0C0">YOL SINAN<BR>(0210207/PETANQUE DE PLOMBIERES LES DIJON/021 )</TD>
+<TD >SAVIANE FLORIAN<BR>(0210414/USCVL/021 )</TD>
+<TD> **</TD>
+</TR>
+</TABLE> </CENTER>
+<BR>
+<BR>
+<a name="tonancre">Résultats Par Equipes</a>
+<BR>
+<CENTER><TABLE border=1 cellpadding=7 cellspacing=1>
+<TR align=center>
+<TD width= 30>Terrain</TD>
+<TD width= 30>N°</TD>
+<TD width= 300>Nom de l'équipe - N° du comité ou ligue</TD>
+<TD width= 300>Résultats Championnats</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">269</TD>
+<TD align=left BGCOLOR="#DAD2D2">PETIT HERVE<BR> (0210503/CLUB PETANQUE ISSOIS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 1 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">101</TD>
+<TD align=left BGCOLOR="#DAD2D2">MECHAIN QUENTIN<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 1 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">136</TD>
+<TD align=left BGCOLOR="#DAD2D2">FERREIRA-DA-SILVA MIKE<BR> (0210505/PETANQUE LAMARCHOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">170</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOUCHER THOMAS<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >80</TD>
+<TD align=left >RENAUD DOMINIQUE<BR> (0210521/LA BOULE DE PONTAILLER/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >89</TD>
+<TD align=left >ROBERT ALEXANDRE<BR> (0210206/PETANQUE DE LONGVIC/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">283</TD>
+<TD align=left BGCOLOR="#DAD2D2">CLERTEAU JEAN-PIERRE<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 2 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">263</TD>
+<TD align=left BGCOLOR="#DAD2D2">RENNER FRANCK<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 2 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.5</TD>
+<TD align=center BGCOLOR="#ACECFB">216</TD>
+<TD align=left BGCOLOR="#ACECFB">JOUANNET VALENTIN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 3</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.5</TD>
+<TD align=center BGCOLOR="#ACECFB">247</TD>
+<TD align=left BGCOLOR="#ACECFB">ZANARDI JÉRÉMY<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 3</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.6</TD>
+<TD align=center BGCOLOR="#ACECFB">68</TD>
+<TD align=left BGCOLOR="#ACECFB">FAUVRE GREGORY<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 3</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.6</TD>
+<TD align=center BGCOLOR="#ACECFB">117</TD>
+<TD align=left BGCOLOR="#ACECFB">BUROT ESTEBAN<BR> (0210315/LA BOULE SAVOUGEOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 3</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">222</TD>
+<TD align=left BGCOLOR="#DAD2D2">FRASCOLLA ANTHONY<BR> (0210304/PETANQUE DE GEVREY CHAMBERTIN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">231</TD>
+<TD align=left BGCOLOR="#DAD2D2">HUDELEY ALAIN<BR> (0210412/AMICALE PETANQUE REMIGEOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 4 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">192</TD>
+<TD align=left BGCOLOR="#DAD2D2">GEORGET BENJAMIN<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 4 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">218</TD>
+<TD align=left BGCOLOR="#DAD2D2">RENNER KILLIAN<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">131</TD>
+<TD align=left BGCOLOR="#DAD2D2">DESCHARRIERES JORDAN<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">42</TD>
+<TD align=left BGCOLOR="#DAD2D2">CANAUX HENRI<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 5 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">168</TD>
+<TD align=left BGCOLOR="#DAD2D2">VENTARD KYLIANN<BR> (0210315/LA BOULE SAVOUGEOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 5 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">66</TD>
+<TD align=left BGCOLOR="#DAD2D2">CHATAIN DYLAN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">200</TD>
+<TD align=left BGCOLOR="#DAD2D2">GILLOT BRUNO<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">228</TD>
+<TD align=left BGCOLOR="#DAD2D2">CAROLINE ALAIN<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 6 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">99</TD>
+<TD align=left BGCOLOR="#DAD2D2">LAMBERT DIDIER<BR> (0210503/CLUB PETANQUE ISSOIS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">179</TD>
+<TD align=left BGCOLOR="#DAD2D2">BONNIN GASTON<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 6 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >115</TD>
+<TD align=left >SALOM BERNARD<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">212</TD>
+<TD align=left BGCOLOR="#DAD2D2">RAGONNEAU FRANCK<BR> (0210417/VILLARS ET VILLENOTTE PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 7 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">215</TD>
+<TD align=left BGCOLOR="#DAD2D2">MENARELLO JANIS<BR> (0210415/LA PETANQUE CHATILLONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">211</TD>
+<TD align=left BGCOLOR="#DAD2D2">LAPOSTOLLE CHRISTOPHE<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 7 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">291</TD>
+<TD align=left BGCOLOR="#DAD2D2">YOL SINAN<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">73</TD>
+<TD align=left BGCOLOR="#DAD2D2">CORON FLORIAN<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 8 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">180</TD>
+<TD align=left BGCOLOR="#DAD2D2">MONNIN CÉLIAN<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 8 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">234</TD>
+<TD align=left BGCOLOR="#DAD2D2">GIRAUD SEBASTIEN<BR> (0210206/PETANQUE DE LONGVIC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >20</TD>
+<TD align=left >BILLOTET CEDRIC<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">48</TD>
+<TD align=left BGCOLOR="#DAD2D2">CASAGRANDE JACKY<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 9 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">87</TD>
+<TD align=left BGCOLOR="#DAD2D2">ZIATYK SERGE<BR> (0210412/AMICALE PETANQUE REMIGEOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 9 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">290</TD>
+<TD align=left BGCOLOR="#DAD2D2">FRASCOLLA LUDOVIC<BR> (0210304/PETANQUE DE GEVREY CHAMBERTIN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">232</TD>
+<TD align=left BGCOLOR="#DAD2D2">PRUDENT ANTONY<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">123</TD>
+<TD align=left BGCOLOR="#DAD2D2">GOUDIER MARC<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 10 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">22</TD>
+<TD align=left BGCOLOR="#DAD2D2">QUANTIN LAURENT<BR> (0210106/PETANQUE DU DRAPEAU/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 10 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >167</TD>
+<TD align=left >BARBOSA EDOUARDO<BR> (0210500/JOYEUSE PETANQUE AUXONNAISE/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">31</TD>
+<TD align=left BGCOLOR="#DAD2D2">LELIEVRE ANDRÉ<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 11 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">233</TD>
+<TD align=left BGCOLOR="#DAD2D2">MILLOT LAURENT<BR> (0210101/CLUB PETANQUE DES GRESILLES/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 11 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">301</TD>
+<TD align=left BGCOLOR="#DAD2D2">MEFORT BENOIT<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">225</TD>
+<TD align=left BGCOLOR="#DAD2D2">REY ANTONIO<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">2</TD>
+<TD align=left BGCOLOR="#DAD2D2">BEAUVOIS BRUNO<BR> (0210109/PETANQUE TOISON D'OR/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 12 Partie PP</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">33</TD>
+<TD align=left BGCOLOR="#DAD2D2">BUROT ERIC<BR> (0210315/LA BOULE SAVOUGEOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >60</TD>
+<TD align=left >SCHROEDER MICHAEL<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">25</TD>
+<TD align=left BGCOLOR="#DAD2D2">YONS JEAN-MARC<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 12 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">165</TD>
+<TD align=left BGCOLOR="#DAD2D2">LE-FLANCHEC FLORIAN<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">251</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOUCHEZ BERNARD<BR> (0210101/CLUB PETANQUE DES GRESILLES/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 13 Partie PP</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >84</TD>
+<TD align=left >SERGUES THÉO<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">55</TD>
+<TD align=left BGCOLOR="#DAD2D2">CARPENTIER JULES<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 13 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >289</TD>
+<TD align=left >BERTHE LUDOVIC<BR> (0210521/LA BOULE DE PONTAILLER/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">118</TD>
+<TD align=left BGCOLOR="#DAD2D2">MOSSON LEANDRE<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 14 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">65</TD>
+<TD align=left BGCOLOR="#DAD2D2">LEGA DENIS<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">235</TD>
+<TD align=left BGCOLOR="#DAD2D2">DEBOISE GUILLAUME<BR> (0210409/PETANQUE D'AIGNAY LE DUC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">100</TD>
+<TD align=left BGCOLOR="#DAD2D2">MORHAIN ERIC<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 15 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >75</TD>
+<TD align=left >ANDRE TOM<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">185</TD>
+<TD align=left BGCOLOR="#DAD2D2">DENISE JEAN-PIERRE<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 16 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >172</TD>
+<TD align=left >PAULIN SEBASTIEN<BR> (0210102/ASPTT/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">62</TD>
+<TD align=left BGCOLOR="#DAD2D2">ANDRIOT JEROME<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">78</TD>
+<TD align=left BGCOLOR="#DAD2D2">MEDOLA SÉBASTIEN<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 17 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">270</TD>
+<TD align=left BGCOLOR="#DAD2D2">SUCHET MICHEL<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >141</TD>
+<TD align=left >BAL GERARD<BR> (0210414/USCVL/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">190</TD>
+<TD align=left BGCOLOR="#DAD2D2">CHOUARD FRÉDÉRIC<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">191</TD>
+<TD align=left BGCOLOR="#DAD2D2">PALAZZO JÉROME<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 18 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">54</TD>
+<TD align=left BGCOLOR="#DAD2D2">FLICK JIMMY DYLAN<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >182</TD>
+<TD align=left >HENRIQUES FERNAND<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">277</TD>
+<TD align=left BGCOLOR="#DAD2D2">SAMBROTTA PATRICE<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 19 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">278</TD>
+<TD align=left BGCOLOR="#DAD2D2">LETIENNE THIBAULT<BR> (0210415/LA PETANQUE CHATILLONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">294</TD>
+<TD align=left BGCOLOR="#DAD2D2">GARRIEN GUILLAUME<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">86</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOUCHARD JEAN-MARIE<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 20 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">265</TD>
+<TD align=left BGCOLOR="#DAD2D2">BENEDETTO ANTHONY<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">173</TD>
+<TD align=left BGCOLOR="#DAD2D2">GOISBLIN CORENTIN<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">103</TD>
+<TD align=left BGCOLOR="#DAD2D2">AUFFRAY THIERRY<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 21 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >107</TD>
+<TD align=left >BONDY ROMAIN<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">206</TD>
+<TD align=left BGCOLOR="#DAD2D2">PETEUIL SÉBASTIEN<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">95</TD>
+<TD align=left BGCOLOR="#DAD2D2">STEINER JEAN-ROBERT<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 22 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">163</TD>
+<TD align=left BGCOLOR="#DAD2D2">RAHALI ABDELMAJID<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">299</TD>
+<TD align=left BGCOLOR="#DAD2D2">MACAIRE NICOLAS<BR> (0210410/PETANQUE DE L AUXOIS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">51</TD>
+<TD align=left BGCOLOR="#DAD2D2">MEDOLA ALAIN<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 23 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >9</TD>
+<TD align=left >SAVIANE FLORIAN<BR> (0210414/USCVL/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >23</TD>
+<TD align=left >ROSSIGNOL PIERRE-ANTOINE<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">213</TD>
+<TD align=left BGCOLOR="#DAD2D2">CHANUT GRÉGORY<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 24 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">160</TD>
+<TD align=left BGCOLOR="#DAD2D2">ROYER REYNALD<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >137</TD>
+<TD align=left >REYMOND JEAN-PIERRE<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">273</TD>
+<TD align=left BGCOLOR="#DAD2D2">VILOTEAU DAVID<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 25 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">36</TD>
+<TD align=left BGCOLOR="#DAD2D2">MARCOUX YANNICK<BR> (0210316/VOUGEOT PETANQUE CLUB/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">96</TD>
+<TD align=left BGCOLOR="#DAD2D2">THIOURT EDDY<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">21</TD>
+<TD align=left BGCOLOR="#DAD2D2">CATELIN CEDRIC<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 26 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">240</TD>
+<TD align=left BGCOLOR="#DAD2D2">GENGEMBACHER JEAN PIERRE<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">104</TD>
+<TD align=left BGCOLOR="#DAD2D2">HORST JULIEN<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">259</TD>
+<TD align=left BGCOLOR="#DAD2D2">PAREDES JOSÉ<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 27 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >43</TD>
+<TD align=left >REMOND ANTHONY<BR> (0210220/FENAY CLUB PETANQUE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">85</TD>
+<TD align=left BGCOLOR="#DAD2D2">NOIROT STEVEN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 28 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">214</TD>
+<TD align=left BGCOLOR="#DAD2D2">LEMIRE JOHNNY<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">281</TD>
+<TD align=left BGCOLOR="#DAD2D2">BONNEFOY MARTIAL<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">18</TD>
+<TD align=left BGCOLOR="#DAD2D2">DARMAU MAXIME<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 29 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">219</TD>
+<TD align=left BGCOLOR="#DAD2D2">GRENIER GÉRARD<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">94</TD>
+<TD align=left BGCOLOR="#DAD2D2">MULLER CHRISTIAN<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">130</TD>
+<TD align=left BGCOLOR="#DAD2D2">MAZOYER THIERRY<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 30 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">26</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOLOTTE FREDERIC<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">108</TD>
+<TD align=left BGCOLOR="#DAD2D2">GONY LIONEL<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">44</TD>
+<TD align=left BGCOLOR="#DAD2D2">REBELO JOSÉ-ANTONIO<BR> (0210500/JOYEUSE PETANQUE AUXONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">7</TD>
+<TD align=left BGCOLOR="#DAD2D2">GALLOT FLORIAN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 31 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">199</TD>
+<TD align=left BGCOLOR="#DAD2D2">GARNIER ROBERT<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">50</TD>
+<TD align=left BGCOLOR="#DAD2D2">PENTLAS MICKAËL<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 32 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">292</TD>
+<TD align=left BGCOLOR="#DAD2D2">MANGIONE TONY<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">88</TD>
+<TD align=left BGCOLOR="#DAD2D2">MAUBLANC PASCAL<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">120</TD>
+<TD align=left BGCOLOR="#DAD2D2">QUENOT LAURENT<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 33 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >271</TD>
+<TD align=left >NAVELOT CHRISTIAN<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">139</TD>
+<TD align=left BGCOLOR="#DAD2D2">TUDOUX LUDOVIC<BR> (0210410/PETANQUE DE L AUXOIS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">124</TD>
+<TD align=left BGCOLOR="#DAD2D2">THABARD FRÉDÉRIC<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 34 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">64</TD>
+<TD align=left BGCOLOR="#DAD2D2">TROISGROS FABRICE<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">298</TD>
+<TD align=left BGCOLOR="#DAD2D2">VASSEUR CYRIL<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">245</TD>
+<TD align=left BGCOLOR="#DAD2D2">GUY BENJAMIN<BR> (0210304/PETANQUE DE GEVREY CHAMBERTIN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 35 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">256</TD>
+<TD align=left BGCOLOR="#DAD2D2">LAPO JEAN-ROBERT<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >284</TD>
+<TD align=left >CORDEROT CHRISTIAN<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left >Pas Couvert en 8ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >282</TD>
+<TD align=left >AUBRUN FLORIAN<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">119</TD>
+<TD align=left BGCOLOR="#DAD2D2">BASSET JOCELYN<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 36 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">188</TD>
+<TD align=left BGCOLOR="#DAD2D2">KUKULINSKI ALAN<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">93</TD>
+<TD align=left BGCOLOR="#DAD2D2">RONAT DOMINIQUE<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 37 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">197</TD>
+<TD align=left BGCOLOR="#DAD2D2">VINCENT THIERRY<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >288</TD>
+<TD align=left >CRETE DAVID<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">246</TD>
+<TD align=left BGCOLOR="#DAD2D2">RAGET DORIAN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 38 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">274</TD>
+<TD align=left BGCOLOR="#DAD2D2">MASSON ALAIN<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">226</TD>
+<TD align=left BGCOLOR="#DAD2D2">DA PONT JULIEN<BR> (0210505/PETANQUE LAMARCHOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >287</TD>
+<TD align=left >CONTANT MAXENCE<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">125</TD>
+<TD align=left BGCOLOR="#DAD2D2">REGAZZONI MARTIAL<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 39 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >230</TD>
+<TD align=left >JOLY GILLES<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert en 8ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >241</TD>
+<TD align=left >ROUGERON PASCAL<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">102</TD>
+<TD align=left BGCOLOR="#DAD2D2">RIGE WILFRIED<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 40 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">72</TD>
+<TD align=left BGCOLOR="#DAD2D2">FIEVET JEAN-JACQUES<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >280</TD>
+<TD align=left >MILLOT THOMAS<BR> (0210306/PETANQUE DE NUITS/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">134</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOULEGUE JEROME<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 41 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >238</TD>
+<TD align=left >RAAZ JULES<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">57</TD>
+<TD align=left BGCOLOR="#DAD2D2">GACHOT ALEXANDRE<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 42 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">109</TD>
+<TD align=left BGCOLOR="#DAD2D2">DELANNOY ARNAUD<BR> (0210521/LA BOULE DE PONTAILLER/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">1</TD>
+<TD align=left BGCOLOR="#DAD2D2">CORNICHE GEOFFREY<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">286</TD>
+<TD align=left BGCOLOR="#DAD2D2">SCHLIENGER REMI<BR> (0210106/PETANQUE DU DRAPEAU/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 43 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">257</TD>
+<TD align=left BGCOLOR="#DAD2D2">LE-PONNER EMMANUEL<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">19</TD>
+<TD align=left BGCOLOR="#DAD2D2">ROUSSEL JEAN-PIERRE<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">15</TD>
+<TD align=left BGCOLOR="#DAD2D2">BASILETTI DAVID<BR> (0210316/VOUGEOT PETANQUE CLUB/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >186</TD>
+<TD align=left >ROGALA LUDOVIC<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">153</TD>
+<TD align=left BGCOLOR="#DAD2D2">BERT FREDERIC<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 44 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">279</TD>
+<TD align=left BGCOLOR="#DAD2D2">MAEREN PIERRE<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >266</TD>
+<TD align=left >ARTON ANDRE<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">47</TD>
+<TD align=left BGCOLOR="#DAD2D2">HEITZMANN ELVIS<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 45 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">147</TD>
+<TD align=left BGCOLOR="#DAD2D2">MARTENOT CLEMENT<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">5</TD>
+<TD align=left BGCOLOR="#DAD2D2">GUENEAU RICHARD<BR> (0210406/LA BOULE MONTBARDOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 46 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">223</TD>
+<TD align=left BGCOLOR="#DAD2D2">MARCATI GAEL<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">296</TD>
+<TD align=left BGCOLOR="#DAD2D2">LAMETTE DAMIEN<BR> (0210502/PETANQUE CLUB DE CLENAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 47 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >248</TD>
+<TD align=left >VERNARDET FLORIAN<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">3</TD>
+<TD align=left BGCOLOR="#DAD2D2">HAULLARD TEDDY<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">217</TD>
+<TD align=left BGCOLOR="#DAD2D2">GEOFFRES JEROME<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 48 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >209</TD>
+<TD align=left >GAUDIER THOMAS<BR> (0210109/PETANQUE TOISON D'OR/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >110</TD>
+<TD align=left >JACOB FABRICE<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">97</TD>
+<TD align=left BGCOLOR="#DAD2D2">BIDOIS GEOFFREY<BR> (0210413/LA BOULE SEDELOCIENNE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 49 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">143</TD>
+<TD align=left BGCOLOR="#DAD2D2">LABYAD SOUFIAN<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">30</TD>
+<TD align=left BGCOLOR="#DAD2D2">MISSEY DAVID<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >221</TD>
+<TD align=left >GAUDRY JOEL<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">71</TD>
+<TD align=left BGCOLOR="#DAD2D2">RONAT ERIC<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 50 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">133</TD>
+<TD align=left BGCOLOR="#DAD2D2">FAY DIDIER<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">112</TD>
+<TD align=left BGCOLOR="#DAD2D2">STRAUB ALAIN<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 51 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >122</TD>
+<TD align=left >LONDIN-QUNY JEAN-MARC<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">224</TD>
+<TD align=left BGCOLOR="#DAD2D2">MERCIER FABRICE<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">161</TD>
+<TD align=left BGCOLOR="#DAD2D2">BLANCHARD THIBAUT<BR> (0210415/LA PETANQUE CHATILLONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >254</TD>
+<TD align=left >CHAMBELLANT NOËL<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">39</TD>
+<TD align=left BGCOLOR="#DAD2D2">ACHARD LEVY<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 52 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">155</TD>
+<TD align=left BGCOLOR="#DAD2D2">RODET MATHIS<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 53 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">58</TD>
+<TD align=left BGCOLOR="#DAD2D2">RIGAUD XAVIER<BR> (0210406/LA BOULE MONTBARDOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">187</TD>
+<TD align=left BGCOLOR="#DAD2D2">DOBEK ERIC<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">177</TD>
+<TD align=left BGCOLOR="#DAD2D2">MITI TAUHERE<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">171</TD>
+<TD align=left BGCOLOR="#DAD2D2">PELLETIER ARTHUR<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 54 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">4</TD>
+<TD align=left BGCOLOR="#DAD2D2">PINGAUD DENIS<BR> (0210102/ASPTT/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >176</TD>
+<TD align=left >RABREGEAU KEVIN<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">128</TD>
+<TD align=left BGCOLOR="#DAD2D2">MONNOT ALEXANDRE<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 55 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >239</TD>
+<TD align=left >ARNOULT ANTON<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">79</TD>
+<TD align=left BGCOLOR="#DAD2D2">GRILLOT DYLAN<BR> (0210316/VOUGEOT PETANQUE CLUB/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 56 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">46</TD>
+<TD align=left BGCOLOR="#DAD2D2">LANTERNIER MARC<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">203</TD>
+<TD align=left BGCOLOR="#DAD2D2">VICTORIN MICHEL<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">12</TD>
+<TD align=left BGCOLOR="#DAD2D2">TIMMERMAN CYRIL<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 57 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">244</TD>
+<TD align=left BGCOLOR="#DAD2D2">BORTOT ERIC<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">82</TD>
+<TD align=left BGCOLOR="#DAD2D2">POCHERON SÉBASTIEN<BR> (0210106/PETANQUE DU DRAPEAU/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">262</TD>
+<TD align=left BGCOLOR="#DAD2D2">DE-GIRARDIER CHRISTOPHE<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >148</TD>
+<TD align=left >BASSET JEAN-PHILIPPE<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">76</TD>
+<TD align=left BGCOLOR="#DAD2D2">CHEVALIER JORDAN<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 58 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">183</TD>
+<TD align=left BGCOLOR="#DAD2D2">TABACCHI ROMAIN<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 59 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >193</TD>
+<TD align=left >BECHE DAMIEN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">8</TD>
+<TD align=left BGCOLOR="#DAD2D2">BULLE GABRIEL<BR> (0210500/JOYEUSE PETANQUE AUXONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">159</TD>
+<TD align=left BGCOLOR="#DAD2D2">PICARD THIERRY<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 60 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >56</TD>
+<TD align=left >ECHAROUX THIERRY<BR> (0210106/PETANQUE DU DRAPEAU/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >300</TD>
+<TD align=left >NICOLAS QUENTIN<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">16</TD>
+<TD align=left BGCOLOR="#DAD2D2">TANQUEREL YVES<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 61 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">253</TD>
+<TD align=left BGCOLOR="#DAD2D2">LECLERCQ MICHAEL<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">207</TD>
+<TD align=left BGCOLOR="#DAD2D2">CAVALLINI DOMINIQUE<BR> (0210306/PETANQUE DE NUITS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.75</TD>
+<TD align=center BGCOLOR="#4CD9F9">70</TD>
+<TD align=left BGCOLOR="#4CD9F9">CYMBALISTY CHRISTOPHE<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">Poule 62 Partie Barrage en cours</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >181</TD>
+<TD align=left >PISANESCHI LAURENT<BR> (0210306/PETANQUE DE NUITS/021)</TD>
+<TD align=left >Pas Couvert en 16ème</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.75</TD>
+<TD align=center BGCOLOR="#4CD9F9">164</TD>
+<TD align=left BGCOLOR="#4CD9F9">SAURON ARNAUD<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">Poule 62 Partie Barrage en cours</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.76</TD>
+<TD align=center BGCOLOR="#ACECFB">237</TD>
+<TD align=left BGCOLOR="#ACECFB">MATUSZAK CHRISTOPHE<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 63</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.76</TD>
+<TD align=center BGCOLOR="#ACECFB">32</TD>
+<TD align=left BGCOLOR="#ACECFB">HEITZMANN FRANCK<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 63</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.76</TD>
+<TD align=center BGCOLOR="#ACECFB">151</TD>
+<TD align=left BGCOLOR="#ACECFB">PICOT STÉPHANE<BR> (0210502/PETANQUE CLUB DE CLENAY/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 63</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.77</TD>
+<TD align=center BGCOLOR="#4CD9F9">52</TD>
+<TD align=left BGCOLOR="#4CD9F9">PELLETIER BRUNO<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 64</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.77</TD>
+<TD align=center BGCOLOR="#4CD9F9">37</TD>
+<TD align=left BGCOLOR="#4CD9F9">MICHEL TAYRON<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 64</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.77</TD>
+<TD align=center BGCOLOR="#4CD9F9">145</TD>
+<TD align=left BGCOLOR="#4CD9F9">CHIRADE MICHEL<BR> (0210102/ASPTT/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 64</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.78</TD>
+<TD align=center BGCOLOR="#ACECFB">189</TD>
+<TD align=left BGCOLOR="#ACECFB">BOUREL CHRISTOPHE<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 65</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.78</TD>
+<TD align=center BGCOLOR="#ACECFB">38</TD>
+<TD align=left BGCOLOR="#ACECFB">CHATELLE VUIGI<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 65</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.78</TD>
+<TD align=center BGCOLOR="#ACECFB">276</TD>
+<TD align=left BGCOLOR="#ACECFB">HANSBERQUE DANIEL<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 65</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.79</TD>
+<TD align=center BGCOLOR="#4CD9F9">297</TD>
+<TD align=left BGCOLOR="#4CD9F9">AVIT KELVYN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 66</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.79</TD>
+<TD align=center BGCOLOR="#4CD9F9">113</TD>
+<TD align=left BGCOLOR="#4CD9F9">GRILLOT BRUNO<BR> (0210316/VOUGEOT PETANQUE CLUB/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 66</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.79</TD>
+<TD align=center BGCOLOR="#4CD9F9">205</TD>
+<TD align=left BGCOLOR="#4CD9F9">SAMBROTTA THIERRY<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 66</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.80</TD>
+<TD align=center BGCOLOR="#ACECFB">156</TD>
+<TD align=left BGCOLOR="#ACECFB">RENNER FABRICE<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 67</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.80</TD>
+<TD align=center BGCOLOR="#ACECFB">105</TD>
+<TD align=left BGCOLOR="#ACECFB">BRASSEUR LUDOVIC<BR> (0210521/LA BOULE DE PONTAILLER/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 67</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.80</TD>
+<TD align=center BGCOLOR="#ACECFB">111</TD>
+<TD align=left BGCOLOR="#ACECFB">NICOLARDOT THIERRY<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 67</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.81</TD>
+<TD align=center BGCOLOR="#4CD9F9">49</TD>
+<TD align=left BGCOLOR="#4CD9F9">PIW MARVIN<BR> (0210413/LA BOULE SEDELOCIENNE/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 68</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.81</TD>
+<TD align=center BGCOLOR="#4CD9F9">208</TD>
+<TD align=left BGCOLOR="#4CD9F9">FAYOLLE DAMIEN<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 68</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.81</TD>
+<TD align=center BGCOLOR="#4CD9F9">295</TD>
+<TD align=left BGCOLOR="#4CD9F9">ZAREMBA ANTHONY<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 68</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.82</TD>
+<TD align=center BGCOLOR="#ACECFB">293</TD>
+<TD align=left BGCOLOR="#ACECFB">BARRAULT FABIEN<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 69</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.82</TD>
+<TD align=center BGCOLOR="#ACECFB">69</TD>
+<TD align=left BGCOLOR="#ACECFB">GUBERT JÉRÉMY<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 69</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.82</TD>
+<TD align=center BGCOLOR="#ACECFB">261</TD>
+<TD align=left BGCOLOR="#ACECFB">GUERIN BENJAMIN<BR> (0210406/LA BOULE MONTBARDOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 69</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.83</TD>
+<TD align=center BGCOLOR="#4CD9F9">175</TD>
+<TD align=left BGCOLOR="#4CD9F9">JOMINET JEAN-CLAUDE<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 70</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.83</TD>
+<TD align=center BGCOLOR="#4CD9F9">35</TD>
+<TD align=left BGCOLOR="#4CD9F9">TILLIER MICHEL<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 70</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.83</TD>
+<TD align=center BGCOLOR="#4CD9F9">127</TD>
+<TD align=left BGCOLOR="#4CD9F9">RENNER KÉLANE<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 70</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.84</TD>
+<TD align=center BGCOLOR="#ACECFB">13</TD>
+<TD align=left BGCOLOR="#ACECFB">SABATIER - CORSETTI CHARLES<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 71</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.84</TD>
+<TD align=center BGCOLOR="#ACECFB">255</TD>
+<TD align=left BGCOLOR="#ACECFB">LOISIER CHARLEY<BR> (0210409/PETANQUE D'AIGNAY LE DUC/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 71</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.84</TD>
+<TD align=center BGCOLOR="#ACECFB">154</TD>
+<TD align=left BGCOLOR="#ACECFB">VUILLECARD MICHEL<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 71</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.85</TD>
+<TD align=center BGCOLOR="#4CD9F9">196</TD>
+<TD align=left BGCOLOR="#4CD9F9">POUCHOY GAETAN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 72</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.85</TD>
+<TD align=center BGCOLOR="#4CD9F9">81</TD>
+<TD align=left BGCOLOR="#4CD9F9">DEGUISE PIERRE-LOUIS<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 72</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.85</TD>
+<TD align=center BGCOLOR="#4CD9F9">6</TD>
+<TD align=left BGCOLOR="#4CD9F9">ROSAND KÉVIN<BR> (0210204/LA BOULE CENTRALE/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 72</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.86</TD>
+<TD align=center BGCOLOR="#ACECFB">152</TD>
+<TD align=left BGCOLOR="#ACECFB">MANIERE THIERRY<BR> (0210507/PETANQUE LONGCHAMPOISE/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 73</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.86</TD>
+<TD align=center BGCOLOR="#ACECFB">250</TD>
+<TD align=left BGCOLOR="#ACECFB">PITOIS CHRISTOPHE<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 73</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.86</TD>
+<TD align=center BGCOLOR="#ACECFB">28</TD>
+<TD align=left BGCOLOR="#ACECFB">BONNEFOY LAURENT<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 73</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.87</TD>
+<TD align=center BGCOLOR="#4CD9F9">285</TD>
+<TD align=left BGCOLOR="#4CD9F9">LAVALLEE SABIN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 74</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.87</TD>
+<TD align=center BGCOLOR="#4CD9F9">162</TD>
+<TD align=left BGCOLOR="#4CD9F9">BAILLY LUDOVIC<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 74</TD>
+</TR>
+<TD align=center BGCOLOR="#4CD9F9">T.87</TD>
+<TD align=center BGCOLOR="#4CD9F9">53</TD>
+<TD align=left BGCOLOR="#4CD9F9">GIRAUD CHRISTOPHE<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left BGCOLOR="#4CD9F9">En Poule 74</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.88</TD>
+<TD align=center BGCOLOR="#ACECFB">17</TD>
+<TD align=left BGCOLOR="#ACECFB">SAVIANE KENZO<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 75</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.88</TD>
+<TD align=center BGCOLOR="#ACECFB">77</TD>
+<TD align=left BGCOLOR="#ACECFB">CHANUSSOT DENIS<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 75</TD>
+</TR>
+<TD align=center BGCOLOR="#ACECFB">T.88</TD>
+<TD align=center BGCOLOR="#ACECFB">61</TD>
+<TD align=left BGCOLOR="#ACECFB">DA-SILVA-REIS KEVIN<BR> (0210410/PETANQUE DE L AUXOIS/021)</TD>
+<TD align=left BGCOLOR="#ACECFB">En Poule 75</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">114</TD>
+<TD align=left BGCOLOR="#DAD2D2">MOSSON FABIEN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 76 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">92</TD>
+<TD align=left BGCOLOR="#DAD2D2">COT HERVE<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">106</TD>
+<TD align=left BGCOLOR="#DAD2D2">LEGRAIN DAMIEN<BR> (0210413/LA BOULE SEDELOCIENNE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">129</TD>
+<TD align=left BGCOLOR="#DAD2D2">PEREIRA NICOLAS<BR> (0210406/LA BOULE MONTBARDOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 77 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >146</TD>
+<TD align=left >LAGHA HAMID<BR> (0210414/USCVL/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >67</TD>
+<TD align=left >RUDATIS JEROME<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">11</TD>
+<TD align=left BGCOLOR="#DAD2D2">DARRAS FRANCK<BR> (0210521/LA BOULE DE PONTAILLER/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 78 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >220</TD>
+<TD align=left >FORTEMAISON LUCAS<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >14</TD>
+<TD align=left >MASSON ERIC<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">90</TD>
+<TD align=left BGCOLOR="#DAD2D2">BERGEROT JEREMY<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 79 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">144</TD>
+<TD align=left BGCOLOR="#DAD2D2">RENNER DAVID<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 16ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >195</TD>
+<TD align=left >RAYMOND SÉBASTIEN<BR> (0210505/PETANQUE LAMARCHOISE/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">83</TD>
+<TD align=left BGCOLOR="#DAD2D2">PERRET THOMAS<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">135</TD>
+<TD align=left BGCOLOR="#DAD2D2">HENCHOZ XAVIER<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 80 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">140</TD>
+<TD align=left BGCOLOR="#DAD2D2">DUCHEZ XAVIER<BR> (0210505/PETANQUE LAMARCHOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">142</TD>
+<TD align=left BGCOLOR="#DAD2D2">LANGUEREAU HUBERT<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 81 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">204</TD>
+<TD align=left BGCOLOR="#DAD2D2">CRAMOISY CHRISTOPHE<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">267</TD>
+<TD align=left BGCOLOR="#DAD2D2">PEROIS STÉPHANE<BR> (0210109/PETANQUE TOISON D'OR/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">275</TD>
+<TD align=left BGCOLOR="#DAD2D2">FOLTIER PATRICK<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 82 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">184</TD>
+<TD align=left BGCOLOR="#DAD2D2">FIEVET MIKAEL<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">260</TD>
+<TD align=left BGCOLOR="#DAD2D2">CHEVALLIER LAURENT<BR> (0210409/PETANQUE D'AIGNAY LE DUC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">210</TD>
+<TD align=left BGCOLOR="#DAD2D2">MARTI ALEXIS<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 83 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">121</TD>
+<TD align=left BGCOLOR="#DAD2D2">LIEBAULT CLAUDE<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 16ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >158</TD>
+<TD align=left >MAGNY ROGER<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">252</TD>
+<TD align=left BGCOLOR="#DAD2D2">DENNEVAULT PATRICK<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 84 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >236</TD>
+<TD align=left >MEDOLA BENOIT<BR> (0210520/LA BOULE MIREBELLOISE/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >59</TD>
+<TD align=left >GARNIER CHRISTOPHE<BR> (0210220/FENAY CLUB PETANQUE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">178</TD>
+<TD align=left BGCOLOR="#DAD2D2">GILLARD JOSEPH<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 85 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >229</TD>
+<TD align=left >RAVASSAT ROMUALD<BR> (0210413/LA BOULE SEDELOCIENNE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">264</TD>
+<TD align=left BGCOLOR="#DAD2D2">BOUVOT MICHEL<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">132</TD>
+<TD align=left BGCOLOR="#DAD2D2">GONNELLE ANTHONY<BR> (0210509/COCHONNET GENLISSIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 86 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">150</TD>
+<TD align=left BGCOLOR="#DAD2D2">DUMONT NATHAN<BR> (0210409/PETANQUE D'AIGNAY LE DUC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">45</TD>
+<TD align=left BGCOLOR="#DAD2D2">MARTIN MICHEL<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">201</TD>
+<TD align=left BGCOLOR="#DAD2D2">REMONDINI FRANCIS<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 87 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >34</TD>
+<TD align=left >GONCALVES ANTOINE<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >63</TD>
+<TD align=left >MERCIER PHILIPPE<BR> (0210102/ASPTT/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">41</TD>
+<TD align=left BGCOLOR="#DAD2D2">SCHNEIDER CHRISTOPHE<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 88 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >91</TD>
+<TD align=left >THOMAS SYLVAIN<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">198</TD>
+<TD align=left BGCOLOR="#DAD2D2">POIROTTE AURELIEN<BR> (0210415/LA PETANQUE CHATILLONNAISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">202</TD>
+<TD align=left BGCOLOR="#DAD2D2">BERNARD YOANN<BR> (0210404/LA JOYEUSE PETANQUE COLO/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 89 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >169</TD>
+<TD align=left >FERNANDEZ JEAN-MICHEL<BR> (0210214/CARREAU DE MARSANNAY/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">27</TD>
+<TD align=left BGCOLOR="#DAD2D2">MOUILLON JÉRÉMY<BR> (0210502/PETANQUE CLUB DE CLENAY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">10</TD>
+<TD align=left BGCOLOR="#DAD2D2">CASCHERA DIMITRI<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant en 32ème</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">157</TD>
+<TD align=left BGCOLOR="#DAD2D2">LARUE PIERRE<BR> (0210220/FENAY CLUB PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">272</TD>
+<TD align=left BGCOLOR="#DAD2D2">BARRE CHRISTIAN<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 90 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">149</TD>
+<TD align=left BGCOLOR="#DAD2D2">ROUSSIN DAMIEN<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 91 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">227</TD>
+<TD align=left BGCOLOR="#DAD2D2">MORIN DIDIER<BR> (0210203/PETANQUE FONTENOISE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">74</TD>
+<TD align=left BGCOLOR="#DAD2D2">MESNIL THIERRY<BR> (0210306/PETANQUE DE NUITS/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">40</TD>
+<TD align=left BGCOLOR="#DAD2D2">BEAUMUNIER CHRISTIAN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >24</TD>
+<TD align=left >FUMEY FABIEN<BR> (0210510/L'ETOILE DE BRAZEY/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">126</TD>
+<TD align=left BGCOLOR="#DAD2D2">LE-FLOCH LILIAN<BR> (0210205/LA RENAISSANCE ST APOLLINAIRE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 92 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">258</TD>
+<TD align=left BGCOLOR="#DAD2D2">TROULLIER SEBASTIEN<BR> (0210414/USCVL/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >166</TD>
+<TD align=left >ANJUERER NICOLAS<BR> (0210407/LE COCHONNET DU SEREIN/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">138</TD>
+<TD align=left BGCOLOR="#DAD2D2">BRAILLARD LUDOVIC<BR> (0210511/LONGEAULT PLUVAULT PETANQUE/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 93 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >249</TD>
+<TD align=left >PADILLA SAEZ JOSÉ<BR> (0210301/PETANQUE LA VIOLETTE/021)</TD>
+<TD align=left >Pas Couvert Cadrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">174</TD>
+<TD align=left BGCOLOR="#DAD2D2">BRAZANITO HELIO<BR> (0210215/COCHONNET DE NEUILLY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 94 Partie Barrage</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">98</TD>
+<TD align=left BGCOLOR="#DAD2D2">MICHEL DAMIEN<BR> (0210320/LE CARREAU DE PAGNY/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">116</TD>
+<TD align=left BGCOLOR="#DAD2D2">MECHAIN CEDRIC<BR> (0210311/PETANQUE DE COMBLANCHIEN/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 95 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >243</TD>
+<TD align=left >LOIODICE RAPHAËL<BR> (0210207/PETANQUE DE PLOMBIERES LES DIJON/021)</TD>
+<TD align=left >Pas Couvert en 32ème</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >29</TD>
+<TD align=left >HOUBRE BERTRAND<BR> (0210109/PETANQUE TOISON D'OR/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center BGCOLOR="#DAD2D2">T.0</TD>
+<TD align=center BGCOLOR="#DAD2D2">194</TD>
+<TD align=left BGCOLOR="#DAD2D2">FRASCOLLA MICKAEL<BR> (0210105/COCHONNET DU LAC/021)</TD>
+<TD align=left BGCOLOR="#DAD2D2">Perdant Poule 96 Partie Barrage</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >242</TD>
+<TD align=left >SAVI MICHEL<BR> (0210209/BOULE QUETIGNOISE/021)</TD>
+<TD align=left >Pas Couvert 1er Tour</TD>
+</TR>
+<TD align=center >T.0</TD>
+<TD align=center >268</TD>
+<TD align=left >LECOCQ EMMANUEL<BR> (0210307/NOLAY 2000/021)</TD>
+<TD align=left >Pas Couvert en 8ème</TD>
+</TR>
+</TABLE> </CENTER>
+</BODY>
+</HTML>
